@@ -16,7 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -39,7 +39,7 @@ import com.exyte.animatednavbar.animation.indendshape.shapeCornerRadius
 @Preview
 fun MainScreen() {
     var selectedIndex by remember {
-        mutableStateOf(1)
+        mutableIntStateOf(1)
     }
 
     val navigationBarItems = remember {
