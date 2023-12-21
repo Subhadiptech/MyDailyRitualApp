@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -25,7 +26,19 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.ersubhadip.journalapp.R
+import com.ersubhadip.journalapp.presentation.components.SetupNavigation
+import com.ersubhadip.journalapp.presentation.dailygoalsscreen.DailyGoalsScreen
+import com.ersubhadip.journalapp.presentation.journalscreen.JournalScreenParent
+import com.ersubhadip.journalapp.presentation.profilescreen.ProfileScreen
+import com.ersubhadip.journalapp.presentation.utils.Destinations
+import com.ersubhadip.journalapp.presentation.utils.noRippleClickable
 import com.ersubhadip.journalapp.ui.theme.Black
 import com.ersubhadip.journalapp.ui.theme.PrimaryPink
 import com.ersubhadip.journalapp.ui.theme.White
@@ -37,17 +50,21 @@ import com.exyte.animatednavbar.animation.indendshape.shapeCornerRadius
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 @Preview
-fun MainScreen() {
+fun MainScreen(
+    navController: NavHostController = rememberNavController(),
+) {
     var selectedIndex by remember {
-        mutableIntStateOf(1)
+        mutableIntStateOf(0)
     }
 
     val navigationBarItems = remember {
-        BottomBarItems.values()
+        listOf(Destinations.DailyGoals, Destinations.DailyJournal, Destinations.Profiles)
     }
 
     Scaffold(
-        modifier = Modifier.background(White).padding(all = 18.dp),
+        modifier = Modifier
+            .background(White)
+            .padding(all = 18.dp),
         bottomBar = {
             AnimatedNavigationBar(
                 modifier = Modifier
@@ -70,13 +87,21 @@ fun MainScreen() {
                             .fillMaxSize()
                             .background(PrimaryPink)
                             .noRippleClickable {
-                                selectedIndex = item.ordinal
+                                selectedIndex = navigationBarItems.indexOf(item)
+                                navController.popBackStack()
+                                navController.navigate(
+                                    item.route,
+                                    navOptions = NavOptions
+                                        .Builder()
+                                        .setLaunchSingleTop(true)
+                                        .build(),
+                                )
                             },
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             modifier = Modifier.size(24.dp),
-                            painter = painterResource(item.icons),
+                            painter = painterResource(item.icon),
                             contentDescription = null,
                             tint = Black
                         )
@@ -85,7 +110,7 @@ fun MainScreen() {
             }
         }
     ) {
-
+        SetupNavigation(navController = navController)
     }
 }
 
@@ -96,12 +121,3 @@ enum class BottomBarItems(val icons: Int) {
 }
 
 
-fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
-    clickable(
-        indication = null,
-        interactionSource = remember {
-            MutableInteractionSource()
-        }) {
-        onClick()
-    }
-}
