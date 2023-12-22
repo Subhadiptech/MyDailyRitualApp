@@ -15,6 +15,9 @@ sealed class JournalScreenState {
         val journalBodyTextFieldState: TextFieldState = TextFieldState(
             label = "journal",
             placeholder = "your journal...",
-        )
+
+        ),
+
+        val formattingIconsState: FormattingIconsState = FormattingIconsState()
     ): JournalScreenState()
 }

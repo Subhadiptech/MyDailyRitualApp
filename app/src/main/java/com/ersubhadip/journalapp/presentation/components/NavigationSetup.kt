@@ -11,7 +11,7 @@ import com.ersubhadip.journalapp.presentation.utils.Destinations
 
 @Composable
 fun SetupNavigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Destinations.DailyGoals.route) {
+    NavHost(navController = navController, startDestination = Destinations.DailyJournal.route) {
         composable(Destinations.DailyGoals.route) {
             DailyGoalsScreen()
         }

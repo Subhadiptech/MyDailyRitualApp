@@ -1,5 +1,7 @@
 package com.ersubhadip.journalapp.presentation.journalscreen
 
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.ersubhadip.journalapp.presentation.journalscreen.uistate.JournalScreenState
@@ -32,6 +34,31 @@ class JournalScreenViewModel @Inject constructor(
 
         val titleTextFieldState = currentScreenState.journalTitleTextFieldState
         _journalScreenState.value = currentScreenState.copy(journalTitleTextFieldState = titleTextFieldState.copy(text = newTitle))
+    }
+
+    fun onBoldTextIconClicked(
+        currentFontWeight: FontWeight?
+    ) {
+        val currentScreenState = _journalScreenState.value
+
+        if (currentScreenState !is JournalScreenState.Success) return
+
+        val formattingIconsState = currentScreenState.formattingIconsState
+        val isBoldTextEnabled = currentFontWeight == FontWeight.Bold
+        _journalScreenState.value = currentScreenState.copy(formattingIconsState = formattingIconsState.copy(isBoldTextEnabled = isBoldTextEnabled))
+    }
+
+    fun onItalicTextIconClicked (
+        currentFontStyle: FontStyle?
+    ) {
+        val currentScreenState = _journalScreenState.value
+
+        if (currentScreenState !is JournalScreenState.Success) return
+
+        val formattingIconState = currentScreenState.formattingIconsState
+        val isItalicTextEnabled = currentFontStyle == FontStyle.Italic
+
+        _journalScreenState.value = currentScreenState.copy(formattingIconsState = formattingIconState.copy(isItalicTextEnabled = isItalicTextEnabled))
     }
 
     fun onJournalBodyTextFieldChange (newTitle: String) {

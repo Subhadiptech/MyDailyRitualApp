@@ -118,6 +118,9 @@ dependencies {
     //rich text editor
     implementation("com.mohamedrejeb.richeditor:richeditor-compose:1.0.0-beta05")
 
+    //compose icons extended
+    implementation("androidx.compose.material:material-icons-extended-android:1.5.4")
+
 }
 
 kapt {
