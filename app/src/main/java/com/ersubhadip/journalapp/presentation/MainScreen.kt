@@ -54,7 +54,7 @@ fun MainScreen(
     navController: NavHostController = rememberNavController(),
 ) {
     var selectedIndex by remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(1)
     }
 
     val navigationBarItems = remember {
