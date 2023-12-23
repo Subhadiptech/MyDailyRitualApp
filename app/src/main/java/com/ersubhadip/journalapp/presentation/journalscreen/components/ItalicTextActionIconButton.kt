@@ -8,16 +8,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
-import com.ersubhadip.journalapp.presentation.journalscreen.uistate.FormattingIconsState
 
 @Composable
 fun ItalicTextActionIconButton(
     modifier: Modifier = Modifier,
-    formattingIconsState: FormattingIconsState,
+    isItalicTextEnabled: Boolean,
     onItalicTextIconClicked: () -> Unit,
 ) {
     IconButton(
@@ -28,7 +26,7 @@ fun ItalicTextActionIconButton(
             modifier = Modifier
                 .drawBehind {
                     drawRect(
-                        color = if (formattingIconsState.isItalicTextEnabled) Color.Red.copy(
+                        color = if (isItalicTextEnabled) Color.Red.copy(
                             alpha = 0.6f
                         ) else Color.Transparent
                     )

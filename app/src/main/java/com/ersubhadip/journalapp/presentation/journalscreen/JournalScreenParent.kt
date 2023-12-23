@@ -1,5 +1,6 @@
 package com.ersubhadip.journalapp.presentation.journalscreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ersubhadip.journalapp.presentation.components.ErrorComposable
@@ -37,15 +39,6 @@ fun JournalScreenParent(
     val richTextEditorState = rememberRichTextState()
     val journalScreenState by journalScreenViewModel.journalScreenState.collectAsStateWithLifecycle()
     val lazyListState = rememberLazyListState()
-    var currentSpanStyle by remember {
-        mutableStateOf(
-            SpanStyle(
-                fontWeight = FontWeight.Normal,
-                fontStyle = FontStyle.Normal
-            )
-        )
-    }
-    richTextEditorState.addSpanStyle(currentSpanStyle)
 
     Box(
         modifier = Modifier
@@ -73,26 +66,28 @@ fun JournalScreenParent(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
                         JournalScreenTopAppBar(
-                            formattingIconsState = currentScreenState.formattingIconsState,
                             onBoldTextIconClicked = {
-                                currentSpanStyle = currentSpanStyle.copy(
-                                    fontWeight = if (currentSpanStyle.fontWeight == FontWeight.Bold) FontWeight.Normal else FontWeight.Bold
-                                )
-
-                                journalScreenViewModel.onBoldTextIconClicked(
-                                    currentFontWeight = currentSpanStyle.fontWeight
+                                richTextEditorState.toggleSpanStyle(
+                                    SpanStyle(
+                                        fontWeight = FontWeight.Bold
+                                    )
                                 )
                             },
 
                             onItalicTextIconClicked = {
-                                currentSpanStyle = currentSpanStyle.copy(
-                                    fontStyle = if (currentSpanStyle.fontStyle == FontStyle.Normal) FontStyle.Italic else FontStyle.Normal
+                                richTextEditorState.toggleSpanStyle(
+                                    SpanStyle(
+                                        fontStyle = FontStyle.Italic
+                                    )
                                 )
+                            },
 
-                                journalScreenViewModel.onItalicTextIconClicked(
-                                    currentFontStyle = currentSpanStyle.fontStyle
-                                )
-                            }
+                            onUnderlineTextIconClicked = {
+                                richTextEditorState.toggleSpanStyle(SpanStyle(
+                                    textDecoration = TextDecoration.Underline,
+                                ))
+                            },
+                            spanStyle = richTextEditorState.currentSpanStyle,
                         )
                     }
                 ) {
@@ -110,3 +105,5 @@ fun JournalScreenParent(
         }
     }
 }
+
+private const val TAG = "journalscreenparent"
