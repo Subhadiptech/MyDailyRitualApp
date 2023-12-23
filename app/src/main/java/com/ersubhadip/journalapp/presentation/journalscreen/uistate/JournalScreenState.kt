@@ -17,7 +17,5 @@ sealed class JournalScreenState {
             placeholder = "your journal...",
 
         ),
-
-        val formattingIconsState: FormattingIconsState = FormattingIconsState()
     ): JournalScreenState()
 }

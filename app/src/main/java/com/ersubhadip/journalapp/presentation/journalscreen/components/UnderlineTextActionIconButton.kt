@@ -3,7 +3,7 @@ package com.ersubhadip.journalapp.presentation.journalscreen.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.FormatBold
+import androidx.compose.material.icons.outlined.FormatUnderlined
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -13,32 +13,30 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun BoldTextActionIconButton(
+fun UnderlineTextActionIconButton(
     modifier: Modifier = Modifier,
-    isBoldTextEnabled: Boolean,
-    onBoldTextIconClicked: () -> Unit,
+    isUnderlineTextEnabled: Boolean,
+    onUnderlineTextIconClicked: () -> Unit,
 ) {
     IconButton(
-        onClick = onBoldTextIconClicked,
         modifier = modifier,
+        onClick = onUnderlineTextIconClicked,
     ) {
         Box(
-            modifier = Modifier
-                .drawBehind {
-                    drawRect(
-                        color = if (isBoldTextEnabled) Color.Red.copy(
-                            alpha = 0.6f
-                        ) else Color.Transparent
-                    )
-                }
+            modifier = Modifier.drawBehind {
+                drawRect(
+                    color = if (isUnderlineTextEnabled) Color.Red.copy(
+                        alpha = 0.6f
+                    ) else Color.Transparent
+                )
+            }
         ) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.Outlined.FormatBold,
+                imageVector = Icons.Outlined.FormatUnderlined,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onBackground,
+                tint = MaterialTheme.colorScheme.onBackground
             )
         }
-
     }
 }
