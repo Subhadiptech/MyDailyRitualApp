@@ -53,8 +53,6 @@ fun MainScreen(
         listOf(Destinations.DailyGoals, Destinations.DailyJournal, Destinations.Profiles)
     }
 
-    val isKeyboardVisible by keyboardAsState()
-
     Scaffold(
         modifier = Modifier
             .background(White),

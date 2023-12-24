@@ -108,6 +108,12 @@ fun JournalScreenParent(
                                 richTextEditorState.toggleUnorderedList()
                             },
 
+                            isNumberedListEnabled = richTextEditorState.isOrderedList,
+
+                            onNumberedListIconClicked = {
+                                richTextEditorState.toggleOrderedList()
+                            },
+
                             spanStyle = richTextEditorState.currentSpanStyle,
                         )
                     }
