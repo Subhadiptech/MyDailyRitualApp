@@ -1,7 +1,10 @@
 package com.ersubhadip.journalapp.presentation.journalscreen.components
 
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -12,40 +15,55 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.BoldTextActionIconButton
+import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.BulletListTextActionButton
+import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.ItalicTextActionIconButton
+import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.UnderlineTextActionIconButton
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun JournalScreenTopAppBar(
     modifier: Modifier = Modifier,
     onBoldTextIconClicked: () -> Unit,
     onItalicTextIconClicked: () -> Unit,
     onUnderlineTextIconClicked: () -> Unit,
+    onBulletListIconClicked: () -> Unit,
     spanStyle: SpanStyle,
+    isOrderedListEnabled: Boolean,
 ) {
-    TopAppBar(
+    MediumTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
         modifier = modifier,
         title = {
-            Text(text = "Journal")
+            Text(text = "My Journal")
         },
         actions = {
-            BoldTextActionIconButton(
-                modifier = Modifier.align(Alignment.CenterVertically),
-                onBoldTextIconClicked = onBoldTextIconClicked,
-                isBoldTextEnabled = spanStyle.fontWeight == FontWeight.Bold
-            )
+            FlowRow {
+                BoldTextActionIconButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    onBoldTextIconClicked = onBoldTextIconClicked,
+                    isBoldTextEnabled = spanStyle.fontWeight == FontWeight.Bold
+                )
 
-            ItalicTextActionIconButton (
-                modifier = Modifier.align(Alignment.CenterVertically),
-                onItalicTextIconClicked = onItalicTextIconClicked,
-                isItalicTextEnabled = spanStyle.fontStyle == FontStyle.Italic,
-            )
+                ItalicTextActionIconButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    onItalicTextIconClicked = onItalicTextIconClicked,
+                    isItalicTextEnabled = spanStyle.fontStyle == FontStyle.Italic,
+                )
 
-            UnderlineTextActionIconButton(
-                modifier = Modifier.align(Alignment.CenterVertically),
-                onUnderlineTextIconClicked = onUnderlineTextIconClicked,
-                isUnderlineTextEnabled = spanStyle.textDecoration == TextDecoration.Underline,
-            )
+                UnderlineTextActionIconButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    onUnderlineTextIconClicked = onUnderlineTextIconClicked,
+                    isUnderlineTextEnabled = spanStyle.textDecoration == TextDecoration.Underline,
+                )
+
+                BulletListTextActionButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    onOrderedListIconClicked = onBulletListIconClicked,
+                    isOrderedListEnabled = isOrderedListEnabled,
+
+                )
+            }
         }
     )
 }
