@@ -3,7 +3,7 @@ package com.ersubhadip.journalapp.presentation.journalscreen.components.topappba
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.FormatListBulleted
+import androidx.compose.material.icons.outlined.FormatListNumbered
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -12,30 +12,26 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun BulletListTextActionButton(
+fun NumberedListTextActionIconButton(
     modifier: Modifier = Modifier,
-    isBulletListEnabled: Boolean,
-    onBulletListIconClicked: () -> Unit,
+    isNumberedListEnabled: Boolean,
+    onNumberedListIconClicked: () -> Unit,
 ) {
     IconButton(
-        onClick = onBulletListIconClicked,
         modifier = modifier,
+        onClick = onNumberedListIconClicked,
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .drawBehind {
-                    drawRect(
-                        color = if (isBulletListEnabled) Color.Red.copy(
-                            alpha = 0.6f
-                        ) else Color.Transparent
-                    )
+                    drawRect(color = if (isNumberedListEnabled) Color.Red.copy(alpha = 0.6f) else Color.Transparent)
                 }
         ) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.Outlined.FormatListBulleted,
-                contentDescription = null,
+                imageVector = Icons.Outlined.FormatListNumbered,
+                contentDescription = null
             )
         }
     }

@@ -6,7 +6,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,6 +17,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.BoldTextActionIconButton
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.BulletListTextActionButton
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.ItalicTextActionIconButton
+import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.NumberedListTextActionIconButton
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.UnderlineTextActionIconButton
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -28,8 +28,10 @@ fun JournalScreenTopAppBar(
     onItalicTextIconClicked: () -> Unit,
     onUnderlineTextIconClicked: () -> Unit,
     onBulletListIconClicked: () -> Unit,
+    onNumberedListIconClicked: () -> Unit,
     spanStyle: SpanStyle,
     isOrderedListEnabled: Boolean,
+    isNumberedListEnabled: Boolean,
 ) {
     MediumTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
@@ -59,9 +61,14 @@ fun JournalScreenTopAppBar(
 
                 BulletListTextActionButton(
                     modifier = Modifier.align(Alignment.CenterVertically),
-                    onOrderedListIconClicked = onBulletListIconClicked,
-                    isOrderedListEnabled = isOrderedListEnabled,
+                    onBulletListIconClicked = onBulletListIconClicked,
+                    isBulletListEnabled = isOrderedListEnabled,
+                )
 
+                NumberedListTextActionIconButton(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    isNumberedListEnabled = isNumberedListEnabled,
+                    onNumberedListIconClicked = onNumberedListIconClicked,
                 )
             }
         }
