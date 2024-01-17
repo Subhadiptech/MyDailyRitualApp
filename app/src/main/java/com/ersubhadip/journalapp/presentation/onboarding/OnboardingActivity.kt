@@ -1,4 +1,4 @@
-package com.ersubhadip.journalapp
+package com.ersubhadip.journalapp.presentation.onboarding
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,14 +9,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import com.ersubhadip.journalapp.presentation.MainScreen
 import com.ersubhadip.journalapp.ui.theme.JournalAppTheme
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class OnboardingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -31,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+
                 }
             }
         }

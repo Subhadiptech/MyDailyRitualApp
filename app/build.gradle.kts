@@ -133,6 +133,10 @@ dependencies {
     val biometric_version = "1.1.0"
     implementation("androidx.biometric:biometric:$biometric_version")
 
+    //Splitties Preference
+    val splittiesVersion = "3.0.0"
+    implementation("com.louiscad.splitties:splitties-preferences:$splittiesVersion")
+
 }
 
 kapt {
