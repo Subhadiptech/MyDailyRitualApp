@@ -17,7 +17,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideJournalDatabase(context: Context): JournalDB? {
+    fun provideJournalDatabase(context: Context): JournalDB {
         return databaseBuilder(
             context.applicationContext,
             JournalDB::class.java,
@@ -28,7 +28,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideJournalDao(appDatabase: JournalDB): JournalDao? {
+    fun provideJournalDao(appDatabase: JournalDB): JournalDao {
         return appDatabase.journalDao()
     }
 }

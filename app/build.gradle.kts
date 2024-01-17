@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.ersubhadip.journalapp"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
 
@@ -123,8 +123,8 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended-android:1.5.4")
 
     // Room
-    val room_version = "2.6.0"
-    implementation("androidx.room:room-runtime:$room_version")
+    val room_version = "2.6.1"
+//    implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
