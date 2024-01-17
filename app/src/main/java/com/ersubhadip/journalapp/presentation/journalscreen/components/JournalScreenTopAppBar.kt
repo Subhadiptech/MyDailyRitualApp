@@ -3,7 +3,6 @@ package com.ersubhadip.journalapp.presentation.journalscreen.components
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -19,6 +18,7 @@ import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbar
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.ItalicTextActionIconButton
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.NumberedListTextActionIconButton
 import com.ersubhadip.journalapp.presentation.journalscreen.components.topappbarcomponents.UnderlineTextActionIconButton
+import com.ersubhadip.journalapp.ui.theme.PrimaryPink
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -34,7 +34,7 @@ fun JournalScreenTopAppBar(
     isNumberedListEnabled: Boolean,
 ) {
     MediumTopAppBar(
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = PrimaryPink),
         modifier = modifier,
         title = {
             Text(text = "My Journal")

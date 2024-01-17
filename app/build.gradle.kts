@@ -14,7 +14,7 @@ android {
         minSdk = 28
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0-${Math.random()}"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.core:core-ktx:+")
+    implementation("androidx.appcompat:appcompat:1.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -120,6 +121,17 @@ dependencies {
 
     //compose icons extended
     implementation("androidx.compose.material:material-icons-extended-android:1.5.4")
+
+    // Room
+    val room_version = "2.6.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    //android biometric api
+    val biometric_version = "1.1.0"
+    implementation("androidx.biometric:biometric:$biometric_version")
 
 }
 
